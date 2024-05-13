@@ -23,14 +23,14 @@ def header():
 
 
 def file_uploader():
-    uploaded_file = st.file_uploader(label="Upload the pdf you want to transform", type=["pdf"] )
+    uploaded_file = st.file_uploader(label="Upload the pdf you want to transform", type=["pdf"])
     if uploaded_file:
         download_file = splitter(uploaded_file)
         st.success("Your file is ready for download!")
         st.download_button(label="Download", data=download_file, file_name='v' + str(datetime.now()) + uploaded_file.name)
 
 def splitter(pdf_stream):
-    existing_doc = fitz.open(filetype="pdf", stream=pdf_stream)
+    existing_doc = fitz.open(filetype="pdf", stream=pdf_stream.getvalue())
     effective_width = st.session_state['page_width'] - (2 * st.session_state['margin'])
     effective_height = st.session_state['page_height'] - (2 * st.session_state['margin'])
     margin = st.session_state['margin']
@@ -98,7 +98,7 @@ def splitter(pdf_stream):
             second_image_rect = fitz.Rect(second_image_start_x, second_image_start_y, second_image_start_x + second_image_width , second_image_start_y + second_image_height)
             new_page.insert_image(second_image_rect, pixmap=second_image)
 
-    file_name = 'v' +  str(datetime.now()) + uploaded_file.name
+    file_name = 'v' +  str(datetime.now()) + pdf_stream.name
     #new_doc.save(file_name, garbage=4, deflate=True, deflate_images=True, clean=True, deflate_fonts=True)
     pdf_bytes = new_doc.tobytes(garbage=4, deflate=True, use_objstms=True, deflate_images=True)
     return pdf_bytes

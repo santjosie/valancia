@@ -1,2 +1,2 @@
-fitz
+pymupdf
 streamlit

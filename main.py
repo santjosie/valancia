@@ -29,8 +29,8 @@ def file_uploader():
         st.success("Your file is ready for download!")
         st.download_button(label="Download", data=download_file, file_name='v' + str(datetime.now()) + uploaded_file.name)
 
-def splitter(uploaded_file):
-    existing_doc = fitz.open(uploaded_file)
+def splitter(pdf_stream):
+    existing_doc = fitz.open(filetype="pdf", stream=pdf_stream)
     effective_width = st.session_state['page_width'] - (2 * st.session_state['margin'])
     effective_height = st.session_state['page_height'] - (2 * st.session_state['margin'])
     margin = st.session_state['margin']

@@ -47,28 +47,66 @@ def splitter():
     return zipper(pdfs_buffer)
 
 
+def validate():
+    st.session_state['chapters'].sort(key=lambda x: x['start_page'])
+    for i, chapter in enumerate(st.session_state['chapters']):
+        if 'chapter_title' not in chapter or chapter['chapter_title'] is None:
+            chapter['chapter_title'] = f'chapter{i+1}'
+
+        if 'end_page' not in chapter or chapter['end_page'] is None:
+            next_start_page = None
+            for next_chapter in st.session_state['chapters']:
+                if next_chapter['start_page'] > chapter['start_page']:
+                    if next_start_page is None or next_chapter['start_page'] < next_start_page:
+                        next_start_page = next_chapter['start_page']
+
+            if next_start_page is not None:
+                chapter['end_page'] = next_start_page - 1
+            else:
+                chapter['end_page'] = len(st.session_state['existing_doc'].pages)
+
+def page_wise_chapters():
+    list_of_pages = [
+        {"start_page": i + 1,
+         "end_page": i + 1,
+         "chapter_title": f'chapter{i+1}'
+         }
+        for i in range(len(st.session_state['existing_doc'].pages))
+    ]
+
+    return list_of_pages
+
+
 def file_uploader():
     uploaded_file = st.file_uploader(label="Upload the pdf you want to split into chapters", type=["pdf"])
     if uploaded_file:
         st.session_state['existing_doc'] = PdfReader(uploaded_file)
         total_pages = len(st.session_state['existing_doc'].pages)
         st.info("Total number of pages in the document is " + str(total_pages))
+        st.subheader("How do you want to split?")
+        st.caption("By default, the splitter will split each page into a separate file. If you want to split by chapters "
+                   "enable the below option")
+        chapter_split = st.toggle(label="Split by chapters that I specify", value=False)
 
-        st.subheader("Specify the pages of each chapter")
-        chapters = [{"start_page":None, "end_page":None, "chapter_title":None}]
+        if chapter_split:
+            chapters = [{"start_page": None, "end_page": None, "chapter_title": None}]
 
-        column_config = {
-            "start_page" : st.column_config.NumberColumn(label="Start page", required=True, min_value=0, max_value=total_pages, step=1),
-            "end_page" : st.column_config.NumberColumn(label="End page", min_value=0, max_value=total_pages, step=1),
-            "chapter_title" : "Chapter title"
-        }
-        st.session_state['chapters'] = st.data_editor(data=chapters, column_config=column_config, num_rows='dynamic')
+            column_config = {
+                "start_page": st.column_config.NumberColumn(label="Start page", required=True, min_value=0,
+                                                            max_value=total_pages, step=1),
+                "end_page": st.column_config.NumberColumn(label="End page", min_value=0, max_value=total_pages, step=1),
+                "chapter_title": "Chapter title"
+            }
+            st.session_state['chapters'] = st.data_editor(data=chapters, column_config=column_config, num_rows='dynamic')
+        else:
+            st.session_state['chapters'] = page_wise_chapters()
 
         split_files = st.button(label="Split into chapters!", type='primary')
         if split_files:
-            #STEP1 - validate chapter list
-            st.success("Your file is ready for download!")
-            st.download_button(label="Download", data=splitter(), file_name='v' + str(datetime.now()) + uploaded_file.name + '.zip')
+            with st.spinner("Working magic...."):
+                validate()
+                st.download_button(label="Download", data=splitter(), file_name='v' + str(datetime.now()) + uploaded_file.name + '.zip')
+                st.toast(body="Your file is ready for download", icon=":material/thumb_up:")
 
 def main():
     st.set_page_config(

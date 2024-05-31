@@ -22,7 +22,7 @@ def merger():
 
 
 def file_uploader():
-    uploaded_files = st.file_uploader(label="Upload the pdf you want to split into chapters", type=["pdf"], accept_multiple_files=True)
+    uploaded_files = st.file_uploader(label="Upload the pdfs that you want to merge into a single file", type=["pdf"], accept_multiple_files=True)
 
     if len(uploaded_files) > 1:
         merge_files = st.button(label="Merge!", type='primary')

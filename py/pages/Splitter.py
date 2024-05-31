@@ -105,12 +105,12 @@ def file_uploader():
         if split_files:
             with st.spinner("Working magic...."):
                 validate()
-                st.download_button(label="Download", data=splitter(), file_name='v' + str(datetime.now()) + uploaded_file.name + '.zip')
+                st.download_button(label="Download", data=splitter(), file_name='v_split_' + str(datetime.now()) + uploaded_file.name + '.zip')
                 st.toast(body="Your file is ready for download", icon=":material/thumb_up:")
 
 def main():
     st.set_page_config(
-        page_title='Valancia',
+        page_title='Valancia | Splitter',
         page_icon=':material/home:',
         menu_items={
             'Get help': 'https://www.google.com',

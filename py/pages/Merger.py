@@ -5,7 +5,7 @@ import io
 
 def header():
     st.header("Welcome to Valancia Merger")
-    st.caption("If you lots of pdf files that you want to merge into a single file, this is the tool for you.")
+    st.caption("If you have lots of pdf files that you want to merge into a single file, this is the tool for you.")
 
 
 def merger():

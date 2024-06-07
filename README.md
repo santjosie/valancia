@@ -1,14 +1,12 @@
 # valancia
 
-##table of contents
+## table of contents
 -[introduction](#introduction)
 -[what can valancia do](#what-can-it-do)
 -[how do I run this?](#how-do-i-run-this)
 -[origin story](#origin-story)
 -[contributing](#contributing)
 -[thanks](#thanks)
--[how does it work?](#how-does-the-mixer-work)
--[]
 
 ## introduction
 valancia is a free pdf transformer that can be used to programmatically manipulate pdf files. if there is a specific pdf transformation that you want and is currently not supported, please log an issue and we'll try to get it added.

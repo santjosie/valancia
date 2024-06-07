@@ -2,7 +2,7 @@
 
 ## table of contents
 -[introduction](#introduction)
--[what can valancia do](#what-can-it-do)
+-[what can valancia do?](#what-can-it-do)
 -[how do I run this?](#how-do-i-run-this)
 -[origin story](#origin-story)
 -[contributing](#contributing)

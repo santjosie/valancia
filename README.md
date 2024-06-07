@@ -1,15 +1,44 @@
 # valancia
 
-## introduction
-valancia is a pdf transformer built for a very specific use case. if someone has handed you a pdf file made from a powerpoint presentation and you want to layout two slides on a single page, then valancia can help. the original request for valancia came up on [reddit](https://www.reddit.com/r/learnprogramming/comments/1cqafk8/seeking_help_resizing_powerpoint_slides_for/).
+##table of contents
+-[introduction](#introduction)
+-[what can valancia do](#what-can-it-do)
+-[how do I run this?](#how-do-i-run-this)
+-[origin story](#origin-story)
+-[contributing](#contributing)
+-[thanks](#thanks)
+-[how does it work?](#how-does-the-mixer-work)
+-[]
 
-the original request stated:
-> Hello, I'm a university student, and usually, our teachers, after the lectures, send us the lessons that were PowerPoint presentations as PDFs. You know the form of the slides that looks like [img 1]. When I want to print them, they look huge on the pages. Even if I print two on one page, it still doesn't look good for me. I want to make it look like [img 2]. I heard that there's an option in printers to do that, but unfortunately, it's not available on the printer that I have access to. So, I thought using Python to do that would be great. However, I've been struggling all week with the results that I'm not good with. So, please, if someone can help me with this or provide me with the code, I'd be so grateful because I need it as fast as possible. Also, I want to print the files in duplex printing (printing on both sides of the page). Thank you very much.
+## introduction
+valancia is a free pdf transformer that can be used to programmatically manipulate pdf files. if there is a specific pdf transformation that you want and is currently not supported, please log an issue and we'll try to get it added.
+
+## what can it do?
+valancia currently supports three functions.
+1. merger - when you have multiple pdfs that you want to combine into a single file. maybe you scanned pages of a document as separate pdfs and you want to combine them into one. 
+2. mixer - the og transformation. can mix multiple pdf pages into a single page. perfect when you have pdfs made from powerpoints and you want to merge two slides into a single page to save on paper when printing.
+3. splitter - when you have a single pdf that you want to split into multiple pdfs - one for each chapter, or maybe one for each page.
 
 ## how do i run this?
-you can access the hosted version of the app at [valancia](https://valancia.streamlit.app)
+1. option 1 - you can access the hosted version of the app at [valancia](https://valancia.streamlit.app)
+2. option 2 - you can clone this repo and run it locally on your machine. if you're doing that ensure that all the python libraries in the requirements.txt file are installed in your machine. once installed, navigate to the project folder and run the following command to start valancia in your browser `streamlit run py/Home.py`
 
-## how does it work?
+## origin story
+valancia was originally built for a very specific request that came from a stranger on the internet. the original request for valancia came up on [reddit](https://www.reddit.com/r/learnprogramming/comments/1cqafk8/seeking_help_resizing_powerpoint_slides_for/). it stated:
+> Hello, I'm a university student, and usually, our teachers, after the lectures, send us the lessons that were PowerPoint presentations as PDFs. You know the form of the slides that looks like [img 1]. When I want to print them, they look huge on the pages. Even if I print two on one page, it still doesn't look good for me. I want to make it look like [img 2]. I heard that there's an option in printers to do that, but unfortunately, it's not available on the printer that I have access to. So, I thought using Python to do that would be great. However, I've been struggling all week with the results that I'm not good with. So, please, if someone can help me with this or provide me with the code, I'd be so grateful because I need it as fast as possible. Also, I want to print the files in duplex printing (printing on both sides of the page). Thank you very much.
+
+after building the mixer transformation, other transformations were added as and when other needs arose.
+
+## contributing
+if you would like to contribute to this project and add in more transformations, or enhance one of the existing ones, please go ahead and log an issue.
+
+## thanks
+this project is standing on the shoulders of giants. the open-source libraries that made this project feasible are:
+1. streamlit
+2. pymupdf
+3. pypdf
+
+## how does the mixer work?
 #### user journey
 - specify the page height, width, margin, dpi of the final pdf that you want
 - upload the pdf that you want to convert

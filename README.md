@@ -20,6 +20,8 @@ valancia currently supports three functions.
 ![clideo_editor_a1e0abf8dd984b8baf8c92bb92db9f0a](https://github.com/santjosie/valancia/assets/8998123/80c61507-3b69-4e93-aadc-f530bf8194bd)
 
 3. splitter - when you have a single pdf that you want to split into multiple pdfs - one for each chapter, or maybe one for each page.
+![clideo_editor_28cc370481454b448dcb4843cefdad22](https://github.com/santjosie/valancia/assets/8998123/404c3b45-b239-45c7-8d70-36d2754bccf7)
+
 
 ## how do i run this?
 1. option 1 - you can access the hosted version of the app at [valancia](https://valancia.streamlit.app)
@@ -60,7 +62,7 @@ the app tries to centre the two slides as much as possible.
 
 to do this, first the area of the page is generated based on the height and the width that the user inputs.
 then the margins are subtracted to find the total available area for placing content.
-an additional margin is added in the middle to provide some space between the slides.
+additional margins are added in the middle to provide some space between the slides.
 whether this is a vertical margin or a horizontal margin depends on whether the user has chosen landscape mode or portrait mode for the transformed pdf.
 what is left over are the panel areas where slides need to be centred.
 the slides are resized while maintaining the aspect ratio and then placed into the center of the panels.

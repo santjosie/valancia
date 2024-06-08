@@ -14,7 +14,10 @@ valancia is a free pdf transformer that can be used to programmatically manipula
 ## what can it do?
 valancia currently supports three functions.
 1. merger - when you have multiple pdfs that you want to combine into a single file. maybe you scanned pages of a document as separate pdfs and you want to combine them into one. 
+
 2. mixer - the og transformation. can mix multiple pdf pages into a single page. perfect when you have pdfs made from powerpoints and you want to merge two slides into a single page to save on paper when printing.
+![clideo_editor_a1e0abf8dd984b8baf8c92bb92db9f0a](https://github.com/santjosie/valancia/assets/8998123/80c61507-3b69-4e93-aadc-f530bf8194bd)
+
 3. splitter - when you have a single pdf that you want to split into multiple pdfs - one for each chapter, or maybe one for each page.
 
 ## how do i run this?
